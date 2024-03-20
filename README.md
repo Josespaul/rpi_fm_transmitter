@@ -3,7 +3,7 @@ Use the Raspberry Pi as an FM transmitter. Works on every Raspberry Pi board.
 
 Just get an FM receiver, connect a 20 - 40 cm plain wire to the Raspberry Pi's GPIO4 (PIN 7 on GPIO header) to act as an antenna, and you are ready for broadcasting.
 
-This project uses the general clock output to produce frequency modulated radio communication. It is based on an idea originally presented by [Oliver Mattos and Oskar Weigl](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter) at [PiFM project](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter).
+This project uses the general clock output to produce frequency-modulated radio communication. It is based on an idea originally presented by [Oliver Mattos and Oskar Weigl](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter) at [PiFM project](http://icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter).
 ## Installation and usage
 To use this software you will have to build the executable. First, install required dependencies:
 ```
@@ -33,10 +33,10 @@ Other options:
 * -b bandwidth - Specifies the bandwidth in kHz, 100 by default
 * -r - Loops the playback
 
-After transmission has begun, simply tune an FM receiver to chosen frequency, you should hear the playback.
+After transmission has begun, simply tune an FM receiver to the chosen frequency, and you should hear the playback.
 ### Raspberry Pi 4
-On Raspberry Pi 4 other built-in hardware probably interfers somehow with this software making transmitting not possible on all standard FM broadcasting frequencies. In this case it is recommended to:
-1. Compile executable with option to use GPIO21 instead of GPIO4 (PIN 40 on GPIO header):
+On Raspberry Pi 4 other built-in hardware probably interfers somehow with this software making transmitting not possible on all standard FM broadcasting frequencies. In this case, it is recommended to:
+1. Compile the executable with the option to use GPIO21 instead of GPIO4 (PIN 40 on GPIO header):
 ```
 make GPIO21=1
 ```
@@ -62,7 +62,7 @@ In cases of a performance drop down use ```plughw:1,0``` instead of ```hw:1,0```
 arecord -D plughw:1,0 -c 1 -d 0 -r 22050 -f S16_LE | sudo ./fm_transmitter -f 100.6 -
 ```
 ### Supported audio formats
-You can transmitt uncompressed WAV (.wav) files directly or read audio data from stdin, eg. using MP3 file:
+You can transmit uncompressed WAV (.wav) files directly or read audio data from stdin, eg. using MP3 file:
 ```
 sudo apt-get install sox libsox-fmt-mp3
 sox example.mp3 -r 22050 -c 1 -b 16 -t wav - | sudo ./fm_transmitter -f 100.6 -
@@ -79,7 +79,7 @@ ffmpeg -i example.webm -f wav -bitexact -acodec pcm_s16le -ar 22050 -ac 1 conver
 sudo ./fm_transmitter -f 100.6 converted-example.wav
 ```
 ## Legal note
-Please keep in mind that transmitting on certain frequencies without special permissions may be illegal in your country.
+Please keep in mind that transmitting on certain frequencies without special permission may be illegal in your country.
 ## New features
 * DMA peripheral support
 * Allows custom frequency and bandwidth settings
